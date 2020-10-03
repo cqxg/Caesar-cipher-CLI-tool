@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/cqxg/Caesar-cipher-CLI-tool/issues"
   },
-  "homepage": "https://github.com/cqxg/Caesar-cipher-CLI-tool#readme"
+  "homepage": "https://github.com/cqxg/Caesar-cipher-CLI-tool#readme",
+  "dependencies": {
+    "commander": "^6.1.0"
+  }
 }
