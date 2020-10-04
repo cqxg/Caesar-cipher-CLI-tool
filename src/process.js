@@ -1,7 +1,15 @@
+const { pipeline } = require('stream');
+
 const { readStream, writeStream, transformStream } = require('./streams');
 
-const process = () => {
-    console.log(readStream, writeStream, transformStream)
+const process = (shift, input, output, action) => {
+    pipeline(
+        readStream(input),
+        writeStream(output),
+        transformStream(shift, action)
+    );
 };
 
-process();
+module.exports = {
+    process
+};

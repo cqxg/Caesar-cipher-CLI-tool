@@ -1,10 +1,18 @@
 const fs = require('fs');
 
-const readStream = () => fs.createReadStream('path');
+const readStream = (path) => {
+    if (path) return fs.createReadStream(path);
+    if (!path) {
+        console.log('Please enter your text for encoding. To exit, press CTRL + C.');
+        return process.stdin;
+    }
+};
 
 const writeStream = () => fs.createWriteStream('path');
 
-const transformStream = (chunk, encoding, callback) => callback('some callback');
+const transformStream = () => () => {
+
+};
 
 module.exports = {
     readStream,

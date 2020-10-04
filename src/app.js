@@ -1,8 +1,6 @@
 const { program } = require('commander');
 
-const process = (a, b, c) => {
-    console.log(a, b, c)
-};
+const { process } = require('./process');
 
 program
     .storeOptionsAsProperties(true)
@@ -12,4 +10,4 @@ program
     .option('-a, --action <encode/decode>', 'an action encode/decode')
     .action(() => process(program.shift, program.input, program.output, program.action));
 
-console.log(program.parse(process.argv))
+program.parse(process.argv);
