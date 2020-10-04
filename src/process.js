@@ -1,12 +1,14 @@
 const { pipeline } = require('stream');
+const fs = require('fs');
 
-const { readStream, writeStream, transformStream } = require('./streams');
+const { readStream, writeStream, transformStream, errHandler } = require('./streams');
 
 const process = (shift, input, output, action) => {
     pipeline(
         readStream(input),
+        transformStream(shift, action),
         writeStream(output),
-        transformStream(shift, action)
+        errHandler
     );
 };
 
