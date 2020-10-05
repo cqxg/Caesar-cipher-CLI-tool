@@ -1,4 +1,5 @@
 const fs = require('fs');
+const os = require('os');
 const through2 = require('through2');
 
 const readStream = (path) => {
@@ -42,7 +43,9 @@ const transformStream = (shift, action) => {
 const writeStream = (path) => {
     if (!path) return process.stdout;
 
-    return fs.createWriteStream(path);
+    return fs.createWriteStream(path, { flags: 'a' }).on('close', () => {
+        fs.createWriteStream(path, { flags: 'a' }).write(os.EOL);
+    });
 };
 
 const errHandler = (err) => {
