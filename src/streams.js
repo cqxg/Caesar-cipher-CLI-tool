@@ -11,11 +11,32 @@ const readStream = (path) => {
 };
 
 const transformStream = (shift, action) => {
+
     return through2(function (chunk, enc, done) {
-        // chunk = chunk.toString().split('').reverse().join('');
+        const curr = (chunk, { min, max }) => chunk >= min && chunk <= max;
+
+        const codify = (shift, action, chunk) => {
+            const upp = { min: 65, max: 90 };
+            const low = { min: 97, max: 122 };
+
+            if (!curr(chunk, low) && !curr(chunk, upp)) return chunk;
+
+            const assembled = curr(chunk, low) ? low : upp;
+            const displaced = action === 'encode' ? parseInt(chunk) + parseInt(shift) : parseInt(chunk) - parseInt(shift);
+
+            if (action === 'encode' && displaced > assembled.max) displaced = displaced - assembled.max + assembled.min - 1;
+            if (action === 'decode' && displaced < assembled.min) displaced = displaced - assembled.min + assembled.max + 1;
+
+            return displaced;
+        };
+
+        for (let i = 0; i < chunk.length; i++) {
+            chunk[i] = codify(shift, action, chunk[i]);
+        };
+
         this.push(chunk + '\n');
         done();
-    })
+    });
 };
 
 const writeStream = (path) => {
@@ -33,4 +54,4 @@ module.exports = {
     writeStream,
     transformStream,
     errHandler
-}
+};
