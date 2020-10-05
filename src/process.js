@@ -1,9 +1,12 @@
 const { pipeline } = require('stream');
-const fs = require('fs');
 
-const { readStream, writeStream, transformStream, errHandler } = require('./streams');
+const { validates } = require('./validates');
 
-const process = (shift, input, output, action) => {
+const { readStream, transformStream, writeStream, errHandler } = require('./streams');
+
+const process = (action, shift, input, output) => {
+    validates(action, shift, input, output);
+
     pipeline(
         readStream(input),
         transformStream(shift, action),
@@ -12,6 +15,4 @@ const process = (shift, input, output, action) => {
     );
 };
 
-module.exports = {
-    process
-};
+module.exports = { process };

@@ -22,7 +22,7 @@ const transformStream = (shift, action) => {
             if (!curr(chunk, low) && !curr(chunk, upp)) return chunk;
 
             const assembled = curr(chunk, low) ? low : upp;
-            const displaced = action === 'encode' ? parseInt(chunk) + parseInt(shift) : parseInt(chunk) - parseInt(shift);
+            let displaced = action === 'encode' ? parseInt(chunk) + parseInt(shift) : parseInt(chunk) - parseInt(shift);
 
             if (action === 'encode' && displaced > assembled.max) displaced = displaced - assembled.max + assembled.min - 1;
             if (action === 'decode' && displaced < assembled.min) displaced = displaced - assembled.min + assembled.max + 1;
