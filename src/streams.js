@@ -4,7 +4,7 @@ const through2 = require('through2');
 
 const readStream = (path) => {
     if (!path) {
-        console.log('Please enter your text for encoding. To exit, press CTRL + C.');
+        console.log('Please enter your text for codify. To exit, press CTRL + C.');
         return process.stdin;
     };
 

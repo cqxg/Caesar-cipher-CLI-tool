@@ -1,7 +1,6 @@
 const { pipeline } = require('stream');
 
 const { validates } = require('./validates');
-
 const { readStream, transformStream, writeStream, errHandler } = require('./streams');
 
 const process = (action, shift, input, output) => {
@@ -9,7 +8,7 @@ const process = (action, shift, input, output) => {
 
     pipeline(
         readStream(input),
-        transformStream(shift, action),
+        transformStream(shift > 26 ? shift % 26 : shift, action),
         writeStream(output),
         errHandler
     );
