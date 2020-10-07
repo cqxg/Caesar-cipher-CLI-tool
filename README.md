@@ -7,3 +7,9 @@ To use the program, clone the repository, and from its root (do not forget to do
 ``-a``, ``--action``: an action encode / decode  
 ``-i``, ``--input``: an input file  
 ``-o``, ``--output``: an output file  
+
+UPD: I decided to add examples here that need to be entered into the command line (remember that commits in README are allowed and after deadline)  
+
+For example:  
+``node src/app -a encode -s 7 -i "./input.txt" -o "./output.txt"``  
+``node src/app --action encode --shift 7``
