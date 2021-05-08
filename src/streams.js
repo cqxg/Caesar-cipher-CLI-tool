@@ -11,6 +11,15 @@ const readStream = (path) => {
     return fs.createReadStream(path);
 };
 
+const writeStream = (path) => {
+    if (!path) return process.stdout;
+
+    return fs.createWriteStream(path, { flags: 'a' }).on('close', () => {
+        fs.createWriteStream(path, { flags: 'a' }).write(os.EOL);
+    });
+};
+
 module.exports = {
     readStream,
+    writeStream,
 };
