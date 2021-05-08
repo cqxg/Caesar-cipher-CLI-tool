@@ -53,8 +53,8 @@ const errHandler = (err) => {
 };
 
 module.exports = {
+    errHandler,
     readStream,
     writeStream,
     transformStream,
-    errHandler
 };
