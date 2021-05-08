@@ -48,8 +48,13 @@ const writeStream = (path) => {
     });
 };
 
+const errHandler = (err) => {
+    if (err) return console.error('Pipeline failed.', err);
+};
+
 module.exports = {
     readStream,
     writeStream,
     transformStream,
+    errHandler
 };
