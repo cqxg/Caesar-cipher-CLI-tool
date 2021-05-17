@@ -1,0 +1,23 @@
+{
+  "name": "caesar-cipher-cli-tool",
+  "version": "1.0.0",
+  "description": "CLI tool that will encode and decode a text by Caesar cipher",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cqxg/Caesar-cipher-CLI-tool.git"
+  },
+  "author": "Ihar Ivaniuk aka cqxg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cqxg/Caesar-cipher-CLI-tool/issues"
+  },
+  "homepage": "https://github.com/cqxg/Caesar-cipher-CLI-tool#readme",
+  "dependencies": {
+    "commander": "^7.2.0",
+    "through2": "^4.0.2"
+  }
+}
